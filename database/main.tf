@@ -1,5 +1,5 @@
 data "aws_secretsmanager_secret" "rds_creds" {
-  name = "rds/mysql/credentials"
+  name = "ahmad/secret/db"
 }
 
 data "aws_secretsmanager_secret_version" "rds_creds_version" {

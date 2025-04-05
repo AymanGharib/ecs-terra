@@ -40,5 +40,18 @@ module "iam" {
 }
 
 
+module "database" {
+  source = "./database"
+   
+  db_engine_version      = "8.0.40"
+  db_instance_class      = "db.t3.micro"
+  dbname                 = var.db_name
+
+  db_identifier          = "three-tier-db"
+  skip_db_snapshot       = true
+  db_subnet_group_name   =  module.networking.public_subnet_id[0]
+  vpc_security_group_ids =  module.networking.db_sg
+}
+
 
 

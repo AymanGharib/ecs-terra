@@ -43,6 +43,27 @@ resource "aws_subnet" "private_subnet" {
     Name = "Private Subnet"
   }
 }
+// db subnets
+
+resource "aws_db_subnet_group" "rds_subnet_grp" {
+ 
+  name  = "rds_subnet_grp"
+
+  subnet_ids = aws_subnet.public_subnet[*].id
+  tags = {
+
+    Name = "my_terra_subnet_grp"
+  }
+
+}
+
+
+
+
+
+
+
+
 
 // Internet Gateway
 resource "aws_internet_gateway" "igw" {
@@ -163,7 +184,7 @@ resource "aws_security_group" "frontend_sg" {
 
 
 resource "aws_security_group" "backend_sg" {
-  name        = "frontend-sg"
+  name        = "backend-sg"
   description = "Security group for frontend ECS service"
   vpc_id      = aws_vpc.cluster.id
 
@@ -189,7 +210,7 @@ resource "aws_security_group" "backend_sg" {
 }
 
 resource "aws_security_group" "db_sg" {
-  name        = "frontend-sg"
+  name        = "db-sg"
   description = "Security group for frontend ECS service"
   vpc_id      = aws_vpc.cluster.id
 

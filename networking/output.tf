@@ -21,5 +21,5 @@ output "vpc_id" {
 }
 
 output "db_subnet" {
-  
+  value = aws_db_subnet_group.rds_subnet_grp.id
 }

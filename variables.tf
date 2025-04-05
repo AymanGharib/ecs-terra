@@ -17,5 +17,5 @@ variable "image" {
   default = [{ "name" : "frontend" ,  "url" : "216874796625.dkr.ecr.eu-north-1.amazonaws.com/front-salon:latest"}  ,{ "name" : "backend" ,  "url" : "216874796625.dkr.ecr.eu-north-1.amazonaws.com/backend:latest"}  ]
 }
 variable "db_name" {
-  default = "salon-db"
+  default = "salondb"
 }

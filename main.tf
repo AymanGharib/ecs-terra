@@ -49,7 +49,7 @@ module "database" {
 
   db_identifier          = "three-tier-db"
   skip_db_snapshot       = true
-  db_subnet_group_name   =  module.networking.public_subnet_id[0]
+  db_subnet_group_name   =  module.networking.db_subnet
   vpc_security_group_ids =  module.networking.db_sg
 }
 

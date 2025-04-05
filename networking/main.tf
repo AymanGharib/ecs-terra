@@ -151,3 +151,65 @@ resource "aws_security_group" "frontend_sg" {
     Name = "Frontend ECS Security Group"
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+resource "aws_security_group" "backend_sg" {
+  name        = "frontend-sg"
+  description = "Security group for frontend ECS service"
+  vpc_id      = aws_vpc.cluster.id
+
+  # Allow inbound traffic from the ALB's security group
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    security_groups = [aws_security_group.frontend_sg.id]  # Allow traffic from ALB SG
+  }
+
+  # Allow all outbound traffic
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]  # Allow outbound traffic to anywhere
+  }
+
+  tags = {
+    Name = "Frontend ECS Security Group"
+  }
+}
+
+resource "aws_security_group" "db_sg" {
+  name        = "frontend-sg"
+  description = "Security group for frontend ECS service"
+  vpc_id      = aws_vpc.cluster.id
+
+  # Allow inbound traffic from the ALB's security group
+  ingress {
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    security_groups = [aws_security_group.backend_sg.id]  # Allow traffic from ALB SG
+  }
+
+  # Allow all outbound traffic
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]  # Allow outbound traffic to anywhere
+  }
+
+  tags = {
+    Name = "Frontend ECS Security Group"
+  }
+}

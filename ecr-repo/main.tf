@@ -1,5 +1,6 @@
 resource "aws_ecr_repository" "front_salon" {
-  name                 = var.front_repo
+  count = var.repos_count
+  name                 = var.repo[count.index]
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
@@ -7,7 +8,7 @@ resource "aws_ecr_repository" "front_salon" {
   }
 
   tags = {
-    Name = "Front Salon Repo"
+    Name = "${var.repo[count.index]}Repo"
     Environment = "dev"
   }
 }

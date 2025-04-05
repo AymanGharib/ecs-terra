@@ -1,6 +1,8 @@
 module "aws_ecr_repositories" {
   source = "./ecr-repo"
-  front_repo = "front-salon"
+  
+  repos_count = var.repos_count
+  repo = var.repos
 }
 module "networking" {
   source              = "./networking"
@@ -28,7 +30,10 @@ depends_on = [ module.load_balancer ]
 public_subnets = module.networking.public_subnet_id
 alb_sg = module.networking.alb_sg
 alb_tg_arn = module.load_balancer.tg_arn
-front_image = var.front_image
+tasks_count = 2
+image  =  var.image
+
+
 }
 module "iam" {
   source = "./iam"

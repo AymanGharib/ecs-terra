@@ -1,1 +1,4 @@
 216874796625.dkr.ecr.eu-north-1.amazonaws.com/front-salon:latest
+
+
+ docker push 216874796625.dkr.ecr.eu-north-1.amazonaws.com/backend:latest

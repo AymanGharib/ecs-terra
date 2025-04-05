@@ -1,4 +1,8 @@
-variable "front_repo" {
 
-    
+variable "repos_count" {
+  
+}
+
+variable "repo" {
+  
 }

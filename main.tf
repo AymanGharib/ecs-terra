@@ -58,3 +58,11 @@ module "database" {
 
 
 
+module "docker" {
+  source = "./docker"
+  db_endpoint =module.database.db_url
+  db_pass = module.database.db_pass
+  db_user = module.database.db_user
+  repository_url = module.aws_ecr_repositories.backend_repo_url
+}
+

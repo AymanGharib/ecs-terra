@@ -43,12 +43,6 @@ container_definitions = jsonencode([
 
 }
 
-
-
-
-
-
-
 resource "aws_ecs_service" "frontend_service" {
   
   name            = "frontend-service"
@@ -71,4 +65,41 @@ resource "aws_ecs_service" "frontend_service" {
 
 
 }
+
+
+resource "aws_ecs_service" "backend_service" {
+  
+  name            = "backend-service"
+  cluster         = aws_ecs_cluster.frontend_cluster.id
+  launch_type     = "FARGATE"
+  task_definition =  aws_ecs_task_definition.frontend_task[1].arn
+  desired_count   = 1
+
+  network_configuration {
+    subnets         = var.public_subnets
+    assign_public_ip = true
+    security_groups = [var.alb_sg]
+  }
+
+  load_balancer {
+    target_group_arn = var.alb_tg_arn
+    container_name   = "frontend"
+    container_port   = 80
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 

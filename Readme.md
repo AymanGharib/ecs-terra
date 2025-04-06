@@ -12,7 +12,7 @@ This project provisions a **highly-available 3-tier architecture** on AWS using 
 - **IAM Roles:** Configured for ECS tasks and services using least privilege.
 
 ## What should be added next
--  ceating a workspace and link it to the repo  . 
+-  configure tfc , ceating a workspace and link it to the repo  . 
 - injecting secrets to ecs in runtime , now im doing it in build time  .
 - configuring the 2 alb for the backend . 
 - using a private subnet for the backend service and adding nat gateway

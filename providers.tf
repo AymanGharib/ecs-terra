@@ -3,6 +3,9 @@ terraform {
     aws = {
       source = "hashicorp/aws"
     }
+     docker = {
+      source = "kreuzwerker/docker"
+    }
   }
 }
 
@@ -11,12 +14,6 @@ provider "aws" {
 }
 
 
-terraform {
-  required_providers {
-    docker = {
-      source = "kreuzwerker/docker"
-    }
-  }
-}
+
 
 provider "docker" {}

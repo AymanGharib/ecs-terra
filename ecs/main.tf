@@ -78,14 +78,10 @@ resource "aws_ecs_service" "backend_service" {
   network_configuration {
     subnets         = var.public_subnets
     assign_public_ip = true
-    security_groups = [var.alb_sg]
+    security_groups = [var.backend_sg]
   }
 
-  load_balancer {
-    target_group_arn = var.alb_tg_arn
-    container_name   = "frontend"
-    container_port   = 80
-  }
+
 
 
 }

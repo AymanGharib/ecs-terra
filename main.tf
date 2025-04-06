@@ -24,13 +24,15 @@ module "load_balancer" {
 }
 
 module "ecs"  {
-depends_on = [ module.load_balancer ]
+  
+depends_on = [ module.load_balancer  , module.database , module.aws_ecr_repositories ]
   source = "./ecs"
   role_arn = module.iam.role_arn
 public_subnets = module.networking.public_subnet_id
 alb_sg = module.networking.alb_sg
 alb_tg_arn = module.load_balancer.tg_arn
 tasks_count = 2
+backend_sg = module.networking.backend_sg
 image  =  var.image
 
 
@@ -41,6 +43,7 @@ module "iam" {
 
 
 module "database" {
+  
   source = "./database"
    
   db_engine_version      = "8.0.40"

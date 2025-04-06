@@ -18,3 +18,6 @@ variable "tasks_count" {
 variable "image" {
   
 }
+variable "backend_sg" {
+  
+}
